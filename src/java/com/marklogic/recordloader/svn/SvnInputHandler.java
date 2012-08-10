@@ -98,7 +98,11 @@ public class SvnInputHandler extends AbstractInputHandler {
             e.printStackTrace();
         } finally {
             if (null != repository) {
-                repository.closeSession();
+                try {
+                    repository.closeSession();
+                }catch (Exception e){
+                    throw new FatalException("That didn't work.  " + e.toString());
+                }
             }
         }
     }
