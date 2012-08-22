@@ -100,8 +100,8 @@ public class SvnInputHandler extends AbstractInputHandler {
             if (null != repository) {
                 try {
                     repository.closeSession();
-                }catch (Exception e){
-                    throw new FatalException("That didn't work.  " + e.toString());
+                } catch (SVNException e) {
+                    logger.logException("couldn't close repository session", e);
                 }
             }
         }
